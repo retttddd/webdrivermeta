@@ -15,7 +15,7 @@ public class DriverMetaController {
     public DriverMeta getDriverUrl(@RequestParam(name = "browser") String browser,
                                    @RequestParam(name = "version")String ver,
                                    @RequestParam(name = "platform") String platform){
-        if (browser.equals("Chrome")) {
+        if (browser.equals("Chrome1")) {
             return new DriverMeta(ver+browser+platform);
         }
         throw new LinkNotFoundException();
