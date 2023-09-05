@@ -6,6 +6,9 @@ import com.ivan.webdrivermeta.ports.chrome.ChromeClientException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.util.regex.Matcher;
@@ -21,6 +24,7 @@ public class DriverMetaService {
     @Autowired
     private ChromeClient chromeClient;
 
+    @Cacheable("driversMeta")
     public DriverMeta getDriverMeta(String browser,
                                     String ver,
                                     String platform) throws DriveMetaException {
@@ -49,4 +53,12 @@ public class DriverMetaService {
         }
         throw new DriveMetaException("service: error extracting milestone version");
     }
+
+    @CacheEvict(value = "driversMeta", allEntries = true)
+    @Scheduled(fixedRateString = "${caching.spring.driversMetaTTL}")
+    public void emptyDriversMetaCache() {
+        logger.info("emptying drivers meta cache");
+    }
 }
+
+
