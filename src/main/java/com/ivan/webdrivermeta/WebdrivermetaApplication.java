@@ -15,12 +15,6 @@ public class WebdrivermetaApplication {
 	public RestTemplate restTemplate(RestTemplateBuilder builder) {
 		return builder.build();
 	}
-//	@Bean
-//	public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
-//		return new PropertySourcesPlaceholderConfigurer();
-//	}
-
-
 
 	public static void main(String[] args) {
 		SpringApplication.run(WebdrivermetaApplication.class, args);

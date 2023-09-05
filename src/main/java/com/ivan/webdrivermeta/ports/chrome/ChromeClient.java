@@ -1,6 +1,9 @@
 package com.ivan.webdrivermeta.ports.chrome;
 
 
+import com.ivan.webdrivermeta.ports.chrome.model.Download;
+import com.ivan.webdrivermeta.ports.chrome.model.Milestone;
+import com.ivan.webdrivermeta.ports.chrome.model.Milestones;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -19,16 +22,24 @@ public class ChromeClient {
     private RestTemplate restTemplate;
     private String serviceUrl;
 
-    public String getDriverUrl(String ver, String platform) {
+    public String getDriverUrl(String ver, String platform) throws ChromeClientException{
         Milestones res = restTemplate.getForObject(
                 this.serviceUrl, Milestones.class);
-        List<Download> resList = res.milestones().get(ver).downloads().get("chrome");
+        Milestone prRes = res.milestones().get(ver);
+
+        if (prRes == null){
+            throw new ChromeClientException("no such a version");
+        }
+        List<Download> resList = prRes.downloads().get("chrome");
+        if (resList == null){
+            throw new ChromeClientException("no download link are available");
+        }
+
         for (Download d: resList) {
             if (d.platform() != null && d.platform().equals(platform)){
                 return d.url();
             }
-
         }
-        throw new RuntimeException("download url not found");
+        throw new ChromeClientException("download url not found");
     }
 }

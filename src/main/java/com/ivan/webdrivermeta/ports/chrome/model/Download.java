@@ -1,4 +1,4 @@
-package com.ivan.webdrivermeta.ports.chrome;
+package com.ivan.webdrivermeta.ports.chrome.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
