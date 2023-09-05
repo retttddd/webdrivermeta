@@ -20,10 +20,11 @@ public class DriverMetaService {
     Logger logger = LoggerFactory.getLogger(DriverMetaService.class);
     @Autowired
     private ChromeClient chromeClient;
+
     public DriverMeta getDriverMeta(String browser,
                                     String ver,
-                                    String platform)throws DriveMetaException {
-        logger.info("CALL TO METADRIVER Service");
+                                    String platform) throws DriveMetaException {
+        logger.info("service: call to getDriverMeta");
         switch (browser) {
             case BROWSER_CHROME:
                 try {
@@ -32,11 +33,11 @@ public class DriverMetaService {
                     throw new DriveMetaException(e.getMessage());
                 }
             case BROWSER_EDGE:
-                throw new DriveMetaException("browser is not supported: " + browser);
+                throw new DriveMetaException("service: browser is not supported: " + browser);
             case BROWSER_FF:
-                throw new DriveMetaException("browser is not supported: " + browser);
+                throw new DriveMetaException("service: browser is not supported: " + browser);
             default:
-                throw new DriveMetaException("browser is not supported: " + browser);
+                throw new DriveMetaException("service: browser is not supported: " + browser);
         }
     }
 
@@ -46,6 +47,6 @@ public class DriverMetaService {
         if (milestoneVersionMatcher.find()) {
             return milestoneVersionMatcher.group(0);
         }
-        throw new DriveMetaException("error extracting milestone version");
+        throw new DriveMetaException("service: error extracting milestone version");
     }
 }

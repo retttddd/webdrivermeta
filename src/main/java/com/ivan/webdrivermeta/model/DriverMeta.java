@@ -1,3 +1,4 @@
 package com.ivan.webdrivermeta.model;
 
-public record DriverMeta(String downloadUrl) { }
+public record DriverMeta(String downloadUrl) {
+}

@@ -13,33 +13,32 @@ import java.util.List;
 @Component
 public class ChromeClient {
 
+    private final RestTemplate restTemplate;
+    private final String serviceUrl;
     public ChromeClient(RestTemplate restTemplate,
                         @Value("${chrome.api.url}") String serviceUrl) {
         this.restTemplate = restTemplate;
         this.serviceUrl = serviceUrl;
     }
 
-    private RestTemplate restTemplate;
-    private String serviceUrl;
-
-    public String getDriverUrl(String ver, String platform) throws ChromeClientException{
+    public String getDriverUrl(String ver, String platform) throws ChromeClientException {
         Milestones res = restTemplate.getForObject(
                 this.serviceUrl, Milestones.class);
         Milestone prRes = res.milestones().get(ver);
 
-        if (prRes == null){
-            throw new ChromeClientException("no such a version");
+        if (prRes == null) {
+            throw new ChromeClientException("chrome client: no such a version");
         }
         List<Download> resList = prRes.downloads().get("chrome");
-        if (resList == null){
-            throw new ChromeClientException("no download link are available");
+        if (resList == null) {
+            throw new ChromeClientException("chrome client: no download link are available");
         }
 
-        for (Download d: resList) {
-            if (d.platform() != null && d.platform().equals(platform)){
+        for (Download d : resList) {
+            if (d.platform() != null && d.platform().equals(platform)) {
                 return d.url();
             }
         }
-        throw new ChromeClientException("download url not found");
+        throw new ChromeClientException("chrome client: download url not found");
     }
 }

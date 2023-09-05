@@ -5,20 +5,19 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
 @PropertySource("classpath:application.properties")
 public class WebdrivermetaApplication {
-	@Bean
-	public RestTemplate restTemplate(RestTemplateBuilder builder) {
-		return builder.build();
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(WebdrivermetaApplication.class, args);
 
-	public static void main(String[] args) {
-		SpringApplication.run(WebdrivermetaApplication.class, args);
+    }
 
-	}
+    @Bean
+    public RestTemplate restTemplate(RestTemplateBuilder builder) {
+        return builder.build();
+    }
 
 }

@@ -6,7 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public record Milestone(String  milestone,
+public record Milestone(String milestone,
                         String version,
                         String revision,
-                        Map<String, List<Download>> downloads) { }
+                        Map<String, List<Download>> downloads) {
+}

@@ -6,4 +6,5 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public record Download(
         String platform,
         String url
-) {}
+) {
+}
