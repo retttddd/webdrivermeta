@@ -27,9 +27,9 @@ At the heart of our microservice lies the `service` package, home to the intrica
 
 ## Usage
 
-1. **Build Application**: To get started, build the application using the provided instructions in the repository.
-
-2. **Make a REST Call**: Utilize the RESTful API by making a request with the corresponding fields.
+1. **Build Application**: To get started, build the application. `./mwnv clean package`
+2. **Run Application**: Run application using. `java -jar ./target/webdrivermeta-1.0.0.jar`
+4. **Make a REST Call**: Use the REST API tool to make a request with the corresponding fields. `http://localhost:8080/getDriverUrl?browser=FireFox&version=93.232313.123123.12313.1.&platform=macos-aarch64`
 
 By following these straightforward steps, you can seamlessly access and utilize WebdriverMeta to acquire the web drivers links you need.
 
