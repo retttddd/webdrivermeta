@@ -16,11 +16,13 @@ At the heart of our microservice lies the `service` package, home to the intrica
 
 ## Useful Links
 
-- [**Google Chrome API**](https://googlechromelabs.github.io/chrome-for-testing/latest-versions-per-milestone-with-downloads.json)
+- [**Google Chrome Drivers Repository**](https://googlechromelabs.github.io/chrome-for-testing/latest-versions-per-milestone-with-downloads.json)
 
-- [**Mozilla Firefox Drivers API**](https://github.com/mozilla/geckodriver/releases)
+- [**Mozilla Firefox Drivers Repository**](https://github.com/mozilla/geckodriver/releases)
 
 - [**Chrome for Testing Availability**](https://github.com/GoogleChromeLabs/chrome-for-testing#json-api-endpoints)
+
+-  [**GitHub REST API documentation**](https://docs.github.com/en/rest/releases/releases?apiVersion=2022-11-28)
 
 
 ## Usage
@@ -29,5 +31,5 @@ At the heart of our microservice lies the `service` package, home to the intrica
 
 2. **Make a REST Call**: Utilize the RESTful API by making a request with the corresponding fields.
 
-By following these straightforward steps, you can seamlessly access and utilize WebdriverMeta to acquire the web drivers you need.
+By following these straightforward steps, you can seamlessly access and utilize WebdriverMeta to acquire the web drivers links you need.
 
