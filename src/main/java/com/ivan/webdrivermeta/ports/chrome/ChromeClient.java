@@ -15,6 +15,7 @@ public class ChromeClient {
 
     private final RestTemplate restTemplate;
     private final String serviceUrl;
+
     public ChromeClient(RestTemplate restTemplate,
                         @Value("${chrome.api.url}") String serviceUrl) {
         this.restTemplate = restTemplate;

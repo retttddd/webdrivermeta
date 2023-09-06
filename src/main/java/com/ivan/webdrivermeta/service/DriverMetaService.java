@@ -3,6 +3,8 @@ package com.ivan.webdrivermeta.service;
 import com.ivan.webdrivermeta.model.DriverMeta;
 import com.ivan.webdrivermeta.ports.chrome.ChromeClient;
 import com.ivan.webdrivermeta.ports.chrome.ChromeClientException;
+import com.ivan.webdrivermeta.ports.firefox.FireFoxClient;
+import com.ivan.webdrivermeta.ports.firefox.FireFoxClientException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,9 @@ public class DriverMetaService {
     @Autowired
     private ChromeClient chromeClient;
 
+    @Autowired
+    private FireFoxClient fireFoxClient;
+
     @Cacheable("driversMeta")
     public DriverMeta getDriverMeta(String browser,
                                     String ver,
@@ -39,7 +44,15 @@ public class DriverMetaService {
             case BROWSER_EDGE:
                 throw new DriveMetaException("service: browser is not supported: " + browser);
             case BROWSER_FF:
-                throw new DriveMetaException("service: browser is not supported: " + browser);
+                try {
+                    return new DriverMeta(
+                            this.fireFoxClient.getDriverUrl(
+                                    this.fireFoxClient.getDriverVersion(
+                                            extractMilestoneVersion(ver)),
+                                    platform));
+                } catch (FireFoxClientException e) {
+                    throw new DriveMetaException(e.getMessage());
+                }
             default:
                 throw new DriveMetaException("service: browser is not supported: " + browser);
         }
